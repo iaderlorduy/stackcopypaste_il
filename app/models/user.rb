@@ -6,5 +6,7 @@ class User < ActiveRecord::Base
          
   def name
     firstname + ' ' + lastname
-  end      
+  end    
+  
+  has_many :posts
 end
