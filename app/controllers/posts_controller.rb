@@ -5,8 +5,15 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.order('created_at desc').limit(10)
+    if params[:title] then
+      @posts = Post.where(category: params[:title]).order('created_at desc').limit(10)
+    else
+      @posts = Post.order('created_at desc').limit(10)
+    end
+    @categories = Category.all
   end
+  
+  
 
   # GET /posts/1
   # GET /posts/1.json
@@ -16,10 +23,12 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @categories = Category.all
   end
 
   # GET /posts/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /posts
@@ -27,12 +36,14 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-
+    
     respond_to do |format|
-      if @post.save
+      if !@post.category.nil? && @post.save 
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
+         @categories = Category.all
+         @post.errors.add(:category,  'necesita seleccionar una categoria')
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
@@ -71,6 +82,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :photo, :description)
+      params.require(:post).permit(:title, :description, :author, :category)
     end
 end

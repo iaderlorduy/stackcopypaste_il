@@ -11,17 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601022535) do
+ActiveRecord::Schema.define(version: 20160604205402) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
+    t.text     "author"
+    t.text     "category"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
   end
 
@@ -39,10 +43,8 @@ ActiveRecord::Schema.define(version: 20160601022535) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "username"
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "location"
-    t.text     "biography"
+    t.string   "name"
+    t.text     "lastname"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -3,3 +3,10 @@
 <% @posts.each do |post| %>
   <%= render 'post', post: post %>
 <% end %>
+<div style="float:rigth">
+<h4>Lista de categorias <%= link_to '(Nueva)', new_category_path %></h4>
+<% @categories.each do |c| %>
+
+  <br><%= link_to c.title, posts_path(title: c.title) %>
+<% end %>
+</div>
