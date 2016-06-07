@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160607013303) do
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "title"
-    t.boolean  "presence"
-=======
 ActiveRecord::Schema.define(version: 20160604205402) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
->>>>>>> 48f9a1c51f09d7ec509fb4a492777c0b1343acfd
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
