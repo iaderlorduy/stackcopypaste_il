@@ -10,46 +10,36 @@ RSpec.describe Post, type: :model do
 
     context "with invalid attributes" do
 
-      it "should not be valid" do
-        @post = build(:post, title: "", description: "")
-        expect(@post.save).to be false
-      end
 
       it "should not be valid without title" do
         @post = build(:post, title: "")
         expect(@post.save).to be false
       end
-
+      
+       it "should not be valid without description" do
+        @post = build(:post, description: "")
+        expect(@post.save).to be false
+      end
+      
+      it "should not be valid without category" do
+        @post = build(:post, category: "")
+        expect(@post.save).to be false
+      end
+      
       it "should not be valid without user_id" do
         @post = build(:post, user_id: nil)
         expect(@post.save).to be false
       end
-
-      it "should not be valid with short title" do
-        @post = build(:post, title: "H")
+  
+      it "should not be valid with category length < 2" do
+        @post = build(:post, category: "a")
         expect(@post.save).to be false
       end
-
-      it "should not be valid with long description" do
-        @post = build(:post_with_longdescription)
-        expect(@post.save).to be false
-      end
-      
-      it "should not be valid without photo" do
-        @post = build(:post, photo: nil)
-        expect(@post.save).to be false
-      end
+     
 
     end
 
-    context "with valid attributes" do
-
-      it "should be valid" do
-        @post = build(:post)
-        expect(@post.save).to be true
-      end
-
-    end
+   
 
   end
 

@@ -1,9 +1,11 @@
 FactoryGirl.define do
   factory :user do
-    firstname { Faker::Name.first_name }
-    lastname { Faker::Name.last_name }
-    email { Faker::Internet.email }
-    password "password"
-    password_confirmation "password"
+    email { "apalmeras91@gmail.com" }
+    password { "1234567" }
+    username { "acps" }
+    name { "armando" }
+    lastname { "palmera" }
+    
+    
   end
 end
